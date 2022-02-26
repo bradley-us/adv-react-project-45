@@ -70,3 +70,21 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+
+const filesToCache = [
+  'index.html'
+];
+
+const staticCacheName = 'pages-cache-v3';
+
+self.addEventListener('install', event => {
+  console.log('Attempting to install service worker and cache static assets');
+  event.waitUntil(
+    caches.open(staticCacheName)
+    .then(cache => {
+      console.log(`Files to cache: ${filesToCache}`)
+
+      return cache.add(filesToCache);
+    })
+  );
+});

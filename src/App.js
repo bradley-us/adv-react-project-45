@@ -1,8 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { withServiceWorkerUpdater } from '@3m1/service-worker-updater';
 
-function App() {
+function App(props) {
+  const { newServiceWorkerDetected, onLoadNewServiceWorkerAccept } = props
   return (
     <div className="App">
       <header className="App-header">
@@ -23,4 +25,4 @@ function App() {
   );
 }
 
-export default App;
+export default withServiceWorkerUpdater(App)
